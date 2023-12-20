@@ -1,0 +1,101 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "basics": {
+        "type": "object",
+        "properties": {
+          "name": { "type": ["string", "null"] },
+          "label": { "type": ["string", "null"] },
+          "email": { "type": ["string", "null"], "format": "email" },
+          "phone": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"], "format": "uri" },
+          "summary": { "type": ["string", "null"] },
+          "location": {
+            "type": "object",
+            "properties": {
+              "address": { "type": ["string", "null"] },
+              "postalCode": { "type": ["string", "null"] },
+              "city": { "type": ["string", "null"] },
+              "countryCode": { "type": ["string", "null"] },
+              "region": { "type": ["string", "null"] }
+            },
+            "required": []
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "network": { "type": ["string", "null"] },
+                "username": { "type": ["string", "null"] },
+                "url": { "type": ["string", "null"], "format": "uri" }
+              },
+              "required": []
+            }
+          }
+        },
+        "required": []
+      },
+      "work": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": ["string", "null"] },
+            "position": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" },
+            "startDate": { "type": ["string", "null"], "format": "date" },
+            "endDate": { "type": ["string", "null"], "format": "date" },
+            "summary": { "type": ["string", "null"] },
+            "highlights": { "type": ["array", "null"], "items": { "type": ["string", "null"] } }
+          },
+          "required": []
+        }
+      },
+      "education": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "institution": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" },
+            "area": { "type": ["string", "null"] },
+            "studyType": { "type": ["string", "null"] },
+            "startDate": { "type": ["string", "null"], "format": "date" },
+            "endDate": { "type": ["string", "null"], "format": "date" },
+            "score": { "type": ["string", "null"] }
+          },
+          "required": []
+        }
+      },
+      "skills": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": ["string", "null"] },
+            "keywords": { "type": ["array", "null"], "items": { "type": ["string", "null"] } }
+          },
+          "required": []
+        }
+      },
+      "projects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": ["string", "null"] },
+            "startDate": { "type": ["string", "null"], "format": "date" },
+            "endDate": { "type": ["string", "null"], "format": "date" },
+            "description": { "type": ["string", "null"] },
+            "highlights": { "type": ["array", "null"], "items": { "type": ["string", "null"] } },
+            "url": { "type": ["string", "null"], "format": "uri" }
+          },
+          "required": []
+        }
+      }
+    },
+    "required": []
+  }
+  
