@@ -59,43 +59,52 @@ export default function WorkFormInputs({ formData, setFormData }) {
         });
     }
 
-    const removeWork = (index) => () => {
-        setFormData({
-            ...formData,
-            work: formData.work.filter((job, i) => i !== index),
-        });
+    function removeWork(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                work: formData.work.filter(function(job, i) {
+                    return i !== index;
+                }),
+            });
+        }
     }
 
-    const removeWorkHighlight = (index, highlightIndex) => () => {
-        setFormData({
-            ...formData,
-            work: formData.work.map((job, i) => {
-                if (i === index) {
-                    return {
-                        ...job,
-                        highlights: job.highlights.filter((highlight, j) => j !== highlightIndex),
-                    };
-                }
-                return job;
-            }),
-        });
+    function removeWorkHighlight(index, highlightIndex) {
+        return function() {
+            setFormData({
+                ...formData,
+                work: formData.work.map(function(job, i) {
+                    if (i === index) {
+                        return {
+                            ...job,
+                            highlights: job.highlights.filter(function(highlight, j) {
+                                return j !== highlightIndex;
+                            }),
+                        };
+                    }
+                    return job;
+                }),
+            });
+        }
     }
 
-    const addWorkHighlight = (index) => () => {
-        setFormData({
-            ...formData,
-            work: formData.work.map((job, i) => {
-                if (i === index) {
-                    return {
-                        ...job,
-                        highlights: job.highlights ? [...job.highlights, ''] : [''],
-                    };
-                }
-                return job;
-            }),
-        });
+    function addWorkHighlight(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                work: formData.work.map(function(job, i) {
+                    if (i === index) {
+                        return {
+                            ...job,
+                            highlights: job.highlights ? [...job.highlights, ''] : [''],
+                        };
+                    }
+                    return job;
+                }),
+            });
+        }
     }
-
     return (
         <div id='work' className="border-2 border-gray-900 rounded w-full">
             <div className="flex items-center justify-between gap-4 bg-gray-900 p-4">

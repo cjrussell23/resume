@@ -57,42 +57,53 @@ export default function SkillsFormInputs({ formData, setFormData }) {
         });
     }
 
-    const addSubskill = (index) => () => {
-        setFormData({
-            ...formData,
-            skills: formData.skills.map((skill, i) => {
-                if (i === index) {
-                    return {
-                        ...skill,
-                        subskills: [...skill.subskills, ''],
-                    };
-                }
-                return skill;
-            }),
-        });
+    function addSubskill(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                skills: formData.skills.map(function(skill, i) {
+                    if (i === index) {
+                        return {
+                            ...skill,
+                            subskills: [...skill.subskills, ''],
+                        };
+                    }
+                    return skill;
+                }),
+            });
+        }
     }
 
-    const removeSkill = (index) => () => {
-        setFormData({
-            ...formData,
-            skills: formData.skills.filter((skill, i) => i !== index),
-        });
+    function removeSkill(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                skills: formData.skills.filter(function(skill, i) {
+                    return i !== index;
+                }),
+            });
+        }
     }
 
-    const removeSubskill = (index, subskillIndex) => () => {
-        setFormData({
-            ...formData,
-            skills: formData.skills.map((skill, i) => {
-                if (i === index) {
-                    return {
-                        ...skill,
-                        subskills: skill.subskills.filter((subskill, j) => j !== subskillIndex),
-                    };
-                }
-                return skill;
-            }),
-        });
+    function removeSubskill(index, subskillIndex) {
+        return function() {
+            setFormData({
+                ...formData,
+                skills: formData.skills.map(function(skill, i) {
+                    if (i === index) {
+                        return {
+                            ...skill,
+                            subskills: skill.subskills.filter(function(subskill, j) {
+                                return j !== subskillIndex;
+                            }),
+                        };
+                    }
+                    return skill;
+                }),
+            });
+        }
     }
+    
     return (
         <div id='skills' className="border-2 border-gray-900 rounded w-full">
             <div className="flex items-center justify-between gap-4 bg-gray-900 p-4">

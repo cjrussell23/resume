@@ -69,14 +69,18 @@ export default function BasicsFormInputs({ formData, setFormData }) {
         });
     }
 
-    const removeProfile = (index) => () => {
-        setFormData({
-            ...formData,
-            basics: {
-                ...formData.basics,
-                profiles: formData.basics.profiles.filter((profile, i) => i !== index),
-            },
-        });
+    function removeProfile(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                basics: {
+                    ...formData.basics,
+                    profiles: formData.basics.profiles.filter(function(profile, i) {
+                        return i !== index;
+                    }),
+                },
+            });
+        }
     }
 
     function addProfile() {

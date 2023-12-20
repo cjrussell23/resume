@@ -36,11 +36,15 @@ export default function EducationFormInputs({ formData, setFormData }) {
         });
     }
 
-    const removeEducation = (index) => () => {
-        setFormData({
-            ...formData,
-            education: formData.education.filter((education, i) => i !== index),
-        });
+    function removeEducation(index) {
+        return function() {
+            setFormData({
+                ...formData,
+                education: formData.education.filter(function(education, i) {
+                    return i !== index;
+                }),
+            });
+        }
     }
 
     return (

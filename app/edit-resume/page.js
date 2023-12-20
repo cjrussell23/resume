@@ -6,19 +6,20 @@ import BasicsFormInputs from '@/components/formInputs/basicsFormInputs';
 import EducationFormInputs from '@/components/formInputs/educationFormInputs';
 import WorkFormInputs from '@/components/formInputs/workFormInputs';
 import SkillsFormInputs from '@/components/formInputs/skillsFormInputs';
+import ProjectsFormInputs from '@/components/formInputs/projectsFormInputs';
 
 export default function EditResume() {
 
     const localFormData = localStorage.getItem('resumeData');
     const [formData, setFormData] = useState(JSON.parse(localFormData) || defaultFormData);
 
-    const handleSubmit = (event) => {
+    function handleSubmit(event) {
         event.preventDefault();
         localStorage.setItem('resumeData', JSON.stringify(formData));
         console.log(formData);
     }
 
-    const clearFormData = () => {
+    function clearFormData() {
         localStorage.removeItem('resumeData');
         setFormData(defaultFormData);
     }
@@ -29,7 +30,7 @@ export default function EditResume() {
             <pre>{JSON.stringify(formData, null, 2)}</pre>
             <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => clearFormData()}>
+                onClick={clearFormData}>
                 Clear
             </button>
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-between p-24 gap-8 max-w-7xl mx-auto">
@@ -37,6 +38,7 @@ export default function EditResume() {
                 <EducationFormInputs formData={formData} setFormData={setFormData} />
                 <WorkFormInputs formData={formData} setFormData={setFormData} />
                 <SkillsFormInputs formData={formData} setFormData={setFormData} />
+                <ProjectsFormInputs formData={formData} setFormData={setFormData} />
                 <button
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     type="submit">Save</button>
